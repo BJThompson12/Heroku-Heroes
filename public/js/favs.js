@@ -29,7 +29,7 @@ const createCards = (favsData) => {
       <div class="mt-6 bg-white rounded-lg shadow-lg overflow-hidden transform duration-500 hover:scale-105 hover:text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-lg font-extrabold">
       <img src=${url} alt="Anime Cover" class="w-full">
       <div class="p-4">
-        <h2 class="flex justify-center text-lg text- font-medium mb-2">${title}</h2>
+        <h2 class="flex justify-center text-lg font-medium mb-2">${title}</h2>
       </div>
       </div>
       `;
