@@ -126,15 +126,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- end of navbar code -->
 
 <!-- start of main display card -->
-<body class="bg-white">
+<body class="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200">
   <!-- start of the card divs and this div gives universal rules to all cards -->
   <section id="random-anime">
-    <div class="flex justify-center mx-4 my-8 sm:mx-8 sm:my-10 md:mx-16 md:my-12 lg:mx-20 lg:my-16 gap-x-10 gap-y-10 flex-col">
+    <div class="flex flex-wrap justify-center mx-4 my-8 sm:mx-8 sm:my-10 md:mx-16 md:my-12 lg:mx-20 lg:my-16 gap-x-10 gap-y-10">
       <!-- the div below is an individual card -->
       <div id="card" class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mt-6 bg-white rounded-lg shadow-lg overflow-hidden transform duration-500 font-extrabold">
-        <img class="w-full max-h-full flex" src="/public/images/Attack_on_Titan_Season_1.webp" alt="animer cover">
+        <!-- anime match image -->
+        <img id="match-image" class="w-full max-h-full flex" src="/public/images/Attack_on_Titan_Season_1.webp" alt="animer cover">
         <div class="p-4">
-          <h3 class="flex justify-center text-lg text- font-medium mb-2">Attack on Titan</h3>
+          <!-- anime match title -->
+          <h3 id="match-title" class="flex justify-center text-lg text- font-medium mb-2">Attack on Titan</h3>
+          <!-- end of individual card -->
           <div id="btn-container" class="bottom-0 left-0 right-0 flex justify-center mb-8">
             <button id="passBtn" class="flex justify-center text-lg font-medium mb-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
               Pass
@@ -145,7 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       </div>
-      <p class="font-medium flex justify-center text-lg text- font-medium mb-2 text-gray-400 overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4">Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide in fear behind enormous concentric walls. What makes these giants truly terrifying is that their taste for human flesh is not born out of hunger but what appears to be out of pleasure. To ensure their survival, the remnants of humanity began living within defensive barriers, resulting in one hundred years without a single titan encounter. However, that fragile calm is soon shattered when a colossal Titan manages to breach the supposedly impregnable outer wall, reigniting the fight for survival against the man-eating abominations.</p>
+      <!-- Anime description -->
+      <p class="font-medium text-center text-lg text- font-medium mt-5 mb-2 text-black overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4">Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide in fear behind enormous concentric walls. What makes these giants truly terrifying is that their taste for human flesh is not born out of hunger but what appears to be out of pleasure. To ensure their survival, the remnants of humanity began living within defensive barriers, resulting in one hundred years without a single titan encounter. However, that fragile calm is soon shattered when a colossal Titan manages to breach the supposedly impregnable outer wall, reigniting the fight for survival against the man-eating abominations.</p>
       <!-- Add more cards as needed -->
     </div>
   </section>
