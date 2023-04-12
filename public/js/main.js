@@ -3,10 +3,8 @@ const template = Handlebars.compile(source);
 
 
 const data = {
-    companyName: 'Acme Corp',
-    companyDescription: 'We make things happen!',
-    companyFounder: 'John Doe',
-    foundingYear: 2005
+    companyName: 'AniMatch',
+    companyDescription: 'We made a tinder like website but instead of people its Anime!',
 };
 
 const aboutSection = document.querySelector('#about');
