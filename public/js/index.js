@@ -36,16 +36,25 @@ async function getRandomAnime() {
 
 const renderImage = (title, synopsis, url) => {
   contentContainerEL.innerHTML = `
- <img alt="Art"
- src="${url}"
- class="h-64 w-full object-cover sm:h-80 lg:h-96" />
-<h3 class="mt-4 text-2xl font-bold text-gray-900 sm:text-3xl text-center">
-${title}
-</h3>
-<p class="mt-2 max-w-sm text-lg text-gray-700 text-center">
- ${synopsis}
-</p>
-</a>
+  <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mt-6 bg-white rounded-lg shadow-lg overflow-hidden transform duration-500 font-extrabold">
+  <!-- anime match image -->
+  <img id="match-image" class="w-full max-h-full flex" src="${url}" alt="animer cover">
+  <div class="p-4">
+    <!-- anime match title -->
+    <h3 id="match-title" class="flex justify-center text-lg text- font-medium mb-2">${title}</h3>
+    <!-- end of individual card -->
+    <div id="btn-container" class="bottom-0 left-0 right-0 flex justify-center mb-8">
+      <button id="passBtn" class="flex justify-center text-lg font-medium mb-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">
+        Pass
+      </button>
+      <button id="saveBtn" class="flex justify-center text-lg font-medium mb-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Anime description -->
+<p class="font-medium text-center text-lg text- font-medium mt-6 mb-2 text-black overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4">${synopsis}</p>
  `;
 };
 
@@ -126,4 +135,4 @@ console.log(JSON.stringify({ email, password }));
 
 // navSaveEl.addEventListener('click', getSaved)
 
-// window.onload = getRandomAnime
+window.onload = getRandomAnime
