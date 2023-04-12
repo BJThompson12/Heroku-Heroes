@@ -813,11 +813,3 @@ video {
     padding-right: 2rem;
   }
 }
-
-/* custom css for favorited anime card's modal */
-
-.modal-content {
-  max-height: calc(100% - 3rem);
-  overflow-y: auto;
-}
-

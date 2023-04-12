@@ -15,7 +15,7 @@
  - [Recordings](#Recordings)
  - [Acknowledgement](#Acknowledgement)
   ## Frameworks 🧰
-  
+  Tailwind
   ## Installation 🛠️ 
 
   ## Usage 🖥️ 

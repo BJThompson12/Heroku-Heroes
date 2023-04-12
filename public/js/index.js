@@ -1,16 +1,19 @@
-// const contentContainerEL = document.getElementById('content-container');
-// const btnContainerEl = document.getElementById('btn-container');
-// const navSaveEl = document.getElementById('nav-save');
-
-const getSaved = () => {
-  console.log('i clicked');
-  document.location.replace('/api/favorite');
-}
-
 let animeData = '';
 const randomAnimeURL = 'https://api.jikan.moe/v4/random/anime?sfw';
 
+const getHomePage = () => {
+  console.log('i clicked Match');
+  document.location.replace('/api/homepageroutes');
+}
+
+const getFavsPage = () => {
+  console.log('i clicked Favorites');
+  document.location.replace('/api/favorite');
+}
+
 async function getRandomAnime() {
+  console.log(localStorage);
+  user_id = localStorage.getItem('user_id');
   fetch(randomAnimeURL)
     .then(function (response) {
       return response.json();
@@ -22,13 +25,16 @@ async function getRandomAnime() {
         description = "Sorry, there is no description found.";
       };
       const img_url = data.data.images.jpg.large_image_url;
-      console.log(data);
+      const mal_id = data.data.mal_id;
+      const url = data.data.url 
+      console.log(data.data.mal_id);
+      console.log(data.data.url);
+      console.log(user_id);
       animeData = {
         title: data.data.titles[0].title,
         description: data.data.synopsis,
         img_url: data.data.images.jpg.large_image_url,
-        //need to get this checked to be replaced with the user
-        user_id: 2,
+        user_id: user_id,
       };
       renderImage(title, description, img_url);
     });
@@ -62,19 +68,22 @@ const postAnime = () => {
   axios.post('/api/homepageroutes', animeData)
   .then(res => {
     console.log(animeData);
+    console.log(localStorage);
+    getRandomAnime()
   })
   .catch(err => {
     console.error(err);
   });
 };
 
-const next = (buttonClicked) => {
+
+const checkClick = (buttonClicked) => {
   // console.log('buttonClicked:', buttonClicked);
   if (buttonClicked === 'Pass') {
-    console.log('i clicked Pass');
+    //console.log('i clicked Pass');
     getRandomAnime();
   } else {
-    console.log('i clicked Save');
+    //console.log('i clicked Save');
     postAnime();
   }
 };
@@ -92,12 +101,13 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log(response);
 
     if (response.ok) {
       const responseData = await response.json();
-      const userId = responseData.user.id;
+      let userId = responseData.user.id;
       console.log(userId);
+      localStorage.setItem('user_id', userId);
+
       // If successful, redirect the browser to the profile page
       document.location.replace('/api/homepageroutes');
     } else {
@@ -108,11 +118,10 @@ const loginFormHandler = async (event) => {
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
-  console.log('i was clicked');
 
   const email = document.getElementById('email-signup').value.trim();
   const password = document.getElementById('password-signup').value.trim();
-console.log(email, password);
+
 console.log(JSON.stringify({ email, password }));
   if (email && password) {
     const response = await fetch('/api/userroutes/signup', {
@@ -122,17 +131,14 @@ console.log(JSON.stringify({ email, password }));
     });
 
     if (response.ok) {
+      const responseData = await response.json();
+      let userId = responseData.user.id;
+      localStorage.setItem('user_id', userId);
       document.location.replace('/api/homepageroutes');
     } else {
       alert(response.statusText);
     }
   }
 };
-// btnContainerEl.addEventListener('click', (e) => {
-//   // run the next function to check what was clicked
-//   next(e.target.textContent.trim());
-// });
-
-// navSaveEl.addEventListener('click', getSaved)
-
 window.onload = getRandomAnime
+

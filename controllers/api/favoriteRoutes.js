@@ -25,6 +25,33 @@ router.get('/:userId', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// DELETE favorite by title
+router.delete('/:title', async (req, res) => {
+  try {
+    console.log(req);
+    // must encode it since it was sent with special characters 
+    const encodedTitle = req.params.title;
+    console.log(encodedTitle);
+    // decode to remove the characters
+    const decodedTitle = decodeURIComponent(encodedTitle);
+    // search for a match and then DELETE
+    const favoriteData = await Favorite.destroy({
+      where: {
+        title: decodedTitle,
+      },
+    });
+    if (!favoriteData) {
+      // if no favorite with that title exist
+      res.status(404).json({ message: 'No favorite found with that title.' });
+      return;
+    }
+    // response code if delete was successful
+    res.status(200).json(favoriteData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 // GET all favorites
 router.get('/', async (req, res) => {
   try {
@@ -88,32 +115,3 @@ router.get('/', async (req, res) => {
 //     console.log('api/favorites/:id GET endpoint reached');
 // });
 
-//we will be doing the post from the homepage
-// POST favorite anime
-// router.post('/', async (req, res) => {
-//     console.log('/api/favorites POST endpoint reached');
-// try {
-//     // Make a GET request to the third-party API
-//     const { data } = await axios.get('https://api.jikan.moe/v4/random/anime');
-        
-//     // Extract the relevant data from the API response
-//      const { name, description, imgURL } = data;
-        
-//     // Create a new Anime object with the extracted data
-//     const anime = new Favorite({ name, description, imgURL });
-        
-//     // Save the new Anime object to the database
-//     await anime.save();
-        
-//     // Send a success response to the client
-//     res.status(201).send({ message: 'Anime created successfully' });
-//     } catch (error) {
-//     res.status(400).send({ error: error.message });
-//     }
-// });
-
-// we wont be updating any of the favortied items
-// // UPDATE favorite
-// router.put('/', (req, res) => {
-//     console.log('/api/favorites PUT endpoint reached');
-// });
