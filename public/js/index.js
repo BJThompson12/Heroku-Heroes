@@ -40,11 +40,11 @@ async function getRandomAnime() {
     });
 }
 
-const renderImage = (title, synopsis, url) => {
+const renderImage = (title, description, img_url) => {
   contentContainerEL.innerHTML = `
   <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mt-6 bg-white rounded-lg shadow-lg overflow-hidden transform duration-500 font-extrabold">
   <!-- anime match image -->
-  <img id="match-image" class="w-full max-h-full flex" src="${url}" alt="animer cover">
+  <img id="match-image" class="w-full max-h-full flex" src="${img_url}" alt="animer cover">
   <div class="p-4">
     <!-- anime match title -->
     <h3 id="match-title" class="flex justify-center text-lg text- font-medium mb-2">${title}</h3>
@@ -60,7 +60,7 @@ const renderImage = (title, synopsis, url) => {
   </div>
 </div>
 <!-- Anime description -->
-<p class="font-medium text-center text-lg text- font-medium mt-6 mb-2 text-black overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4">${synopsis}</p>
+<p class="font-medium text-center text-lg text- font-medium mt-6 mb-2 text-black overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4">${description}</p>
  `;
 };
 

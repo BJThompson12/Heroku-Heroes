@@ -6,9 +6,17 @@ const favoritesBtn = document.getElementById('favorites-button')
 const hamburgerFavoritesBtn = document.getElementById('favorites-button-hamburger')
 const hamburgerMatchBtn = document.getElementById('match-button-hamburger')
 
-btnContainerEl.addEventListener('click', (e) => {
-  // run the next function to check what was clicked
-  checkClick(e.target.textContent.trim());
+document.addEventListener('DOMContentLoaded', () => {
+  const btnContainerEl = document.querySelector('btn-container');
+
+  if (btnContainerEl) {
+    btnContainerEl.addEventListener('click', (e) => {
+      // Run the next function to check what was clicked
+      checkClick(e.target.textContent.trim());
+    });
+  } else {
+    console.error('Element not found');
+  }
 });
 
 navMatchEl.addEventListener('click', getHomePage)
